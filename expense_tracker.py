@@ -27,30 +27,30 @@ purchases = []
 
 for i in range(num_purchases):
     description = input(f"Purchase {i + 1} description: ")
-    category = input(f"Purchase {i + 1} category (dining, entertainment, car, other): ")
+    category = input(f"Purchase {i + 1} category (dining, school, car, other): ")
     price = int(input(f"Purchase {i + 1} price: "))
     purchases.append({"description": description, "category": category, "price": price})
 
 # accumulator: total per category and average transaction price
 total_dining = 0
-total_ent = 0
+total_school = 0
 total_car = 0
 total_other = 0
 
 
 for purchase in purchases:
     if purchase["category"].lower() == "dining":
-        total_dining += purchase["price"]
-    elif purchase["category"].lower() == "entertainment":
-        total_ent += purchase["price"]
+        total_dining += purchase['price']
+    elif purchase["category"].lower() == "school":
+        total_school += purchase['price']
     elif purchase["category"].lower() == "car":
-        total_car += purchase["price"]
+        total_car += purchase['price']
     elif purchase["category"].lower() == "other":
-        total_other += purchase["price"]
+        total_other += purchase['price']
 
 total_price = 0
 for purchase in purchases:
-    total_price += purchases["price"]
+    total_price += purchase['price']
 
 
 average_price = total_price / len(purchases)
@@ -61,4 +61,12 @@ print("---")
 print(f"Total purchases: {len(purchases)}")
 print("---")
 for purchase in purchases:
-    print(f"{purchase['description']} ({purchase['category']}): ${purchase['price']}:.2f")
+    print(f"{purchase['description']} ({purchase['category']}): ${purchase['price']:.2f}")
+
+print("---")
+print("Total spent per category:")
+print("---")
+print(f"Dining: {total_dining:.2f}")
+print(f"School: {total_school:.2f}")
+print(f"Car: {total_car:.2f}")
+print(f"Other: {total_other:.2f}")
