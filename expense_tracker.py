@@ -21,7 +21,7 @@ Outputs:
 - print total per category, average transaction price, biggest expense, list of above average purchases
 
 """
-
+# collect purchases
 num_purchases = int(input("How many purchases? "))
 purchases = []
 
@@ -30,6 +30,9 @@ for i in range(num_purchases):
     category = input(f"Purchase {i + 1} category (dining, school, car, other): ")
     price = int(input(f"Purchase {i + 1} price: "))
     purchases.append({"description": description, "category": category, "price": price})
+    
+""" if category.lower() not in ['dining', 'school','car','other']:
+        print("Invalid category. Please enter one of the following categories: dining, school, car, other.")"""
 
 # accumulator: total per category and average transaction price
 total_dining = 0
@@ -52,21 +55,44 @@ total_price = 0
 for purchase in purchases:
     total_price += purchase['price']
 
-
 average_price = total_price / len(purchases)
 
-# output
+# min/max: find largest purchase
+big_purchase = purchases[0]
+for purchase in purchases:
+    if purchase['price'] > big_purchase['price']:
+        big_purchase = purchase
 
+# filter: purchases above average purchase price
+high_prices = []
+for purchase in purchases:
+    if purchase['price'] > average_price:
+        high_prices.append(purchase['description'])
+
+# output message
+
+print("---")
+print("Spending Report")
 print("---")
 print(f"Total purchases: {len(purchases)}")
 print("---")
 for purchase in purchases:
-    print(f"{purchase['description']} ({purchase['category']}): ${purchase['price']:.2f}")
+    print(f"{purchase['description'].title()} ({purchase['category'].title()}): ${purchase['price']:.2f}")
 
 print("---")
 print("Total spent per category:")
+print(f"Dining: ${total_dining:.2f}")
+print(f"School: ${total_school:.2f}")
+print(f"Car: ${total_car:.2f}")
+print(f"Other: ${total_other:.2f}")
+
 print("---")
-print(f"Dining: {total_dining:.2f}")
-print(f"School: {total_school:.2f}")
-print(f"Car: {total_car:.2f}")
-print(f"Other: {total_other:.2f}")
+print(f"Average purchase price: ${average_price:.2f}")
+
+print("---")
+print(f"Largest purchase: {big_purchase['description'].title()} ({big_purchase['category'].title()}): ${big_purchase['price']:.2f}")
+print("---")
+
+print(f"Purchases above average price: {', '.join(high_prices)}")
+print("---")
+
