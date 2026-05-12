@@ -23,16 +23,28 @@ Outputs:
 """
 # collect purchases
 num_purchases = int(input("How many purchases? "))
+if num_purchases <= 0:
+    print("Error: must enter at least 1 purchase.")
+    exit()
+
 purchases = []
+valid_categories = ["dining", "school", "car", "other"]
 
 for i in range(num_purchases):
     description = input(f"Purchase {i + 1} description: ")
-    category = input(f"Purchase {i + 1} category (dining, school, car, other): ")
-    price = int(input(f"Purchase {i + 1} price: "))
+
+    category = input(f"Purchase {i + 1} category (dining, school, car, other): ").lower()
+    if category not in valid_categories:
+        print(f"Error: '{category}' is not a valid category.")
+        exit()
+
+    price = float(input(f"Purchase {i + 1} price: "))
+    if price < 0:
+        print("Error: price cannot be negative.")
+        exit()
+
     purchases.append({"description": description, "category": category, "price": price})
-    
-""" if category.lower() not in ['dining', 'school','car','other']:
-        print("Invalid category. Please enter one of the following categories: dining, school, car, other.")"""
+
 
 # accumulator: total per category and average transaction price
 total_dining = 0
