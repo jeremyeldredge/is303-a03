@@ -25,7 +25,7 @@ Outputs:
 # collect inputs
 workout_types = ["run", "walk", "yoga", "pickleball", "basketball", "other"]
 
-name = input("Name: ").capitalize
+name = input("Name: ").capitalize()
 num_workouts = int(input("How many workouts do you want to record? "))
 workouts = []
 
@@ -139,5 +139,46 @@ print("--------------------------------")
 print(f"Number of workouts: {len(workouts)} ")
 print(f"Total time: {total_time} minutes")
 print(f"Total calories burned: {total_calories}")
-  
+if len(runs) > 0:
+    print("--------------------------------")
+    print("Running Report")
+    print("--------------------------------")
+    print(f"Number of runs: {len(total_time_runs)}")
+    print(f"Average run duration: {avg_duration_runs} minutes")
+    print(f"Average calories burned: {avg_calories_runs}")
+if len(walks) > 0:
+    print("--------------------------------")
+    print("Walking Report")
+    print("--------------------------------")
+    print(f"Number of walks: {len(walks)}")
+    print(f"Average walk duration: {avg_duration_walks} minutes")
+    print(f"Average calories burned: {avg_calories_walks}")
+if len(yogas) > 0:
+    print("--------------------------------")
+    print("Yoga Report")
+    print("--------------------------------")
+    print(f"Number of yoga sessions: {len(yogas)}")
+    print(f"Average yoga duration: {avg_duration_yogas} minutes")
+    print(f"Average calories burned: {avg_calories_yogas}")
+if len(pickles) > 0:
+    print("--------------------------------")
+    print("Pickleball Report")
+    print("--------------------------------")
+    print(f"Number of pickleball sessions: {len(pickles)}")
+    print(f"Average pickleball duration: {avg_duration_pickleball} minutes")
+    print(f"Average calories burned: {avg_calories_pickleball}")
+if len(baskets) > 0:    
+    print("--------------------------------")
+    print("Basketball Report")
+    print("--------------------------------")
+    print(f"Number of basketball sessions: {len(baskets)}")
+    print(f"Average basketball duration: {avg_duration_basketball} minutes")
+    print(f"Average calories burned: {avg_calories_basketball}")
+if len(others) > 0:
+    print("--------------------------------")
+    print("Other Workout Report")
+    print("--------------------------------")
+    print(f"Number of other workouts: {len(others)}")
+    print(f"Average other workout duration: {avg_duration_other} minutes")
+    print(f"Average calories burned: {avg_calories_other}")
     
