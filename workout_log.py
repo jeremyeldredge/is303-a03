@@ -12,7 +12,6 @@ Inputs:
     - Exercise type
     - Workout duration
     - Calories burned
-    - Time of day
 
 Processes:
 - Accumulate total workout time
@@ -24,16 +23,20 @@ Outputs:
 
 """
 # collect inputs
+workout_types = ["run", "walk", "yoga", "pickleball", "basketball", "other"]
+
 name = input("Name: ")
-num_workouts = int(input("How many workouts do you want to record?"))
+num_workouts = int(input("How many workouts do you want to record? "))
 workouts = []
 
 for i in range(num_workouts):
-    exercise_type = input(f"Workout {i+1} type (run, walk, yoga, pickleball, basketball, other): ")
-    workout_duration = input(f"Workout duration (min): ")
-    calories_burned = input("Calories burned: ")
-    exercise_time = input("Time of day (morning, afternoon, evening): ")
-    workouts.append({"type":exercise_type, "duration":workout_duration,"calories burned":calories_burned,"time of day":exercise_time})
+    exercise_type = input(f"Workout {i+1} type (run, walk, yoga, pickleball, basketball, other): ").lower()
+    if exercise_type not in workout_types:
+        print("Invalid workout type. Enter one of the given options.")
+        exit()
+    workout_duration = int(input(f"Workout duration (min): "))
+    calories_burned = int(input("Calories burned: "))
+    workouts.append({"type":exercise_type, "duration":workout_duration,"calories burned":calories_burned})
 
 # processes
 
@@ -49,7 +52,7 @@ avg_calories = total_calories/len(workouts)
 
 long_workout = workouts[0]
 for workout in workouts:
-    if workout["duration"]>long_workout["duration"]:
+    if workout['duration']>long_workout['duration']:
         long_workout = workout
 
 runs=[]
@@ -76,39 +79,40 @@ for workout in workouts:
         runs.append(workout)
         total_time_runs += workout["duration"]
         total_cal_runs += workout["calories burned"]
+        avg_duration_runs = total_time_runs / len(runs)
+        avg_calories_runs = total_cal_runs / len(runs)
     elif workout["type"] == "walk":
         walks.append(workout)
         total_time_walks += workout["duration"]
         total_cal_walks += workout["calories burned"]
+        avg_duration_walks = total_time_walks / len(walks)
+        avg_calories_walks = total_cal_walks / len(walks)
     elif workout["type"] == "yoga":
         yogas.append(workout)
         total_time_yogas += workout["duration"]
         total_cal_yogas += workout["calories burned"]
+        avg_duration_yogas = total_time_yogas / len(yogas)
+        avg_calories_yogas = total_cal_yogas / len(yogas)
     elif workout["type"] == "pickleball":
         pickles.append(workout)
         total_time_pickleball += workout["duration"]
         total_cal_pickleball += workout["calories burned"]
+        avg_duration_pickleball = total_time_pickleball / len(pickles)
+        avg_calories_pickleball = total_cal_pickleball / len(pickles)
     elif workout["type"] == "basketball":
         baskets.append(workout)
         total_time_basketball += workout["duration"]
         total_cal_basketball += workout["calories burned"]
+        avg_duration_basketball = total_time_basketball / len(baskets)
+        avg_calories_basketball = total_cal_basketball / len(baskets)
     elif workout["type"] == "other":
         others.append(workout)
         total_time_others += workout["duration"]
         total_cal_others += workout["calories burned"]
+        avg_duration_other = total_time_others / len(others)
+        avg_calories_other = total_cal_others / len(others)
 
-avg_duration_runs = total_time_runs / len(runs)
-avg_calories_runs = total_cal_runs / len(runs)
-avg_duration_walks = total_time_walks / len(walks)
-avg_calories_walks = total_cal_walks / len(walks)
-avg_duration_yogas = total_time_yogas / len(yogas)
-avg_calories_yogas = total_cal_yogas / len(yogas)
-avg_duration_pickleball = total_time_pickleball / len(pickles)
-avg_calories_pickleball = total_cal_pickleball / len(pickles)
-avg_duration_basketball = total_time_basketball / len(baskets)
-avg_calories_basketball = total_cal_basketball / len(baskets)
-avg_duration_other = total_time_others / len(others)
-avg_calories_other = total_cal_others / len(others)
+
 
 
   
