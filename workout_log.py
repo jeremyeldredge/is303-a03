@@ -54,7 +54,7 @@ for i in range(num_workouts):
                 print("Please enter a whole number greater than 0.")
         except ValueError:
             print("Please enter a whole number.")
-workouts.append({"type":exercise_type, "duration":workout_duration,"calories burned":calories_burned})
+    workouts.append({"type":exercise_type, "duration":workout_duration,"calories burned":calories_burned})
 
 # processes
 
@@ -139,11 +139,14 @@ print("--------------------------------")
 print(f"Number of workouts: {len(workouts)} ")
 print(f"Total time: {total_time} minutes")
 print(f"Total calories burned: {total_calories}")
+print(f"Average workout duration: {avg_duration} minutes")
+print(f"Average calories burned: {avg_calories}")
+print(f"Longest workout: {long_workout['type']} for {long_workout['duration']} minutes, burning {long_workout['calories burned']} calories")
 if len(runs) > 0:
     print("--------------------------------")
     print("Running Report")
     print("--------------------------------")
-    print(f"Number of runs: {len(total_time_runs)}")
+    print(f"Number of runs: {len(runs)}")
     print(f"Average run duration: {avg_duration_runs} minutes")
     print(f"Average calories burned: {avg_calories_runs}")
 if len(walks) > 0:
